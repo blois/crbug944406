@@ -1,0 +1,53 @@
+<style>
+  .overlay {
+    width: 400;
+    height: 400;
+    z-index: 1;
+    background: red;
+    position: fixed;
+  }
+
+  .overlay button {
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0px;
+    border: none;
+    display: block;
+  }
+}
+</style>
+
+<div class='container'></div>
+
+<div class='overlay'>
+  <button>Click me</button>
+</div>
+
+<script>
+  async function main() {
+
+    const button = document.querySelector('button');
+    button.onclick = () => {
+      const div = document.querySelector('.overlay');
+      div.style.background = 'green';
+    };
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://x-colab.googleusercontent.com/v2/usercontent/b645cdf6ae3e8b14/outputframe.html?vrz=1`;
+    // This URL will work correctly, presumably because of Site Isolation?
+    // iframe.src = 'iframe.html';
+    iframe.style.display = 'block';
+
+    await new Promise((resolve, reject) => {
+      iframe.onload = resolve;
+      iframe.onerror = reject;
+      document.querySelector('.container').appendChild(iframe);
+    });
+  }
+
+  main();
+</script>

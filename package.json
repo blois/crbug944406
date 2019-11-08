@@ -1,0 +1,11 @@
+{
+  "main": "./driver.js",
+  "dependencies": {},
+  "scripts": {
+    "start": "node --experimental-modules driver.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "puppeteer": "^2.0.0"
+  }
+}
